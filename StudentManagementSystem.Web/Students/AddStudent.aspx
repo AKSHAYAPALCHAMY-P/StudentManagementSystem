@@ -21,7 +21,7 @@
             <asp:Label ID="StudentAddress" runat="server">Address</asp:Label>
             <asp:TextBox ID="StudentAddressInput" runat="server"></asp:TextBox><br /><br />
 
-            <asp:Button ID="SaveButton" runat="server" Text="Save" OnClick="AddStudent_Click" />
+            <asp:Button ID="SaveButton"  runat="server" Text="Save" OnClick="AddStudent_Click" />
         </div>
     </form>
 </body>
