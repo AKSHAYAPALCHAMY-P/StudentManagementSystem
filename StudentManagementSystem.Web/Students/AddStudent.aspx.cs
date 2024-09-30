@@ -53,8 +53,13 @@ namespace StudentManagementSystem.Web.Students
 
             }
 
-
+            StudentNameINput.Text = " ";
+            StudentIDInput.Text = " ";
+            StudentClassInput.Text = " ";   
+            StudentAddressInput.Text = " ";
 
         }
+
+
     }
 }
