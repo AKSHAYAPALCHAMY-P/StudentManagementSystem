@@ -21,7 +21,7 @@ namespace StudentManagementSystem.Web.Students
             string strInitializeTable = @"IF NOT EXISTS(SELECT * FROM sysobjects WHERE name='Students' AND xtype='U')
                                             Create Table Students(
                                             Name VARCHAR(100),
-                                            StudentID int,
+                                            StudentID int PRIMARY KEY,
                                             Class VARCHAR(10),
                                             AddressName VARCHAR(100))";
             using (SqlConnection Conn = new SqlConnection(ConnectionString))
@@ -53,10 +53,10 @@ namespace StudentManagementSystem.Web.Students
 
             }
 
-            StudentNameINput.Text = " ";
-            StudentIDInput.Text = " ";
-            StudentClassInput.Text = " ";   
-            StudentAddressInput.Text = " ";
+            StudentNameINput.Text = string.Empty;
+            StudentIDInput.Text = string.Empty;
+            StudentClassInput.Text = string.Empty;   
+            StudentAddressInput.Text = string.Empty;
 
         }
 
