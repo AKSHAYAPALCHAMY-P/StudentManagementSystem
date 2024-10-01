@@ -9,9 +9,13 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:GridView ID="StudentsTable" runat="server" AutoGenerateColumns="False" DataKeyNames="StudentID" 
-                OnRowEditing="StudentsTable_RowEditing" OnRowCancelingEdit="StudentsTable_RowCancelingEdit" 
-                OnRowDeleting="StudentsTable_RowDeleting">
+            <asp:GridView ID="StudentsTable" runat="server" AutoGenerateColumns="False" 
+                    DataKeyNames="StudentID"
+                    OnRowEditing="StudentsTable_RowEditing" 
+                    OnRowUpdating="StudentsTable_RowUpdating"
+                    OnRowCancelingEdit="StudentsTable_RowCancelingEdit" 
+                    OnRowDeleting="StudentsTable_RowDeleting">
+
                 <Columns>
                     
                     <asp:TemplateField HeaderText="StudentName">

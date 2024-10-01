@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Web.Caching;
 using System.Web.UI;
+using StudentManagementSystem.Data;
+using StudentManagementSystem.Logic;
+
 
 namespace StudentManagementSystem.Web.Students
 {
@@ -12,54 +16,34 @@ namespace StudentManagementSystem.Web.Students
         {
             if (!IsPostBack)
             {
-                CreateTableIfNotExists();
-            }
-        }
-
-        protected void CreateTableIfNotExists()
-        {
-            string strInitializeTable = @"IF NOT EXISTS(SELECT * FROM sysobjects WHERE name='Students' AND xtype='U')
-                                            Create Table Students(
-                                            Name VARCHAR(100),
-                                            StudentID int PRIMARY KEY,
-                                            Class VARCHAR(10),
-                                            AddressName VARCHAR(100))";
-            using (SqlConnection Conn = new SqlConnection(ConnectionString))
-            {
-                SqlCommand Cmd = new SqlCommand(strInitializeTable, Conn);
-                Conn.Open();
-                Cmd.ExecuteNonQuery();
+                if (!string.IsNullOrEmpty(Request.QueryString["StuentID"]))
+                {
+                    int nStudentID = int.Parse(Request.QueryString["StuentID"]);
+                    //LoadStudentData(nStudentID);
+                }
             }
         }
 
         protected void AddStudent_Click(object sender, EventArgs e)
         {
-            using (SqlConnection Conn = new SqlConnection(ConnectionString))
+            Student newStudent = new Student
             {
-                string strInsertQuery = @"INSERT INTO Students(Name, StudentID, Class, AddressName)
-                                          VALUES(@Name, @StudentID, @Class, @AddressName)";
+                strStudentName = StudentNameINput.Text,
+                nStudentId = int.Parse(StudentIDInput.Text),
+                strClass = StudentClassInput.Text,
+                strAddress = StudentAddressInput.Text,
+            };
 
-                using (SqlCommand Command = new SqlCommand(strInsertQuery, Conn))
-                {
-
-                    Command.Parameters.AddWithValue("@Name", StudentNameINput.Text);
-                    Command.Parameters.AddWithValue("@StudentID", StudentIDInput.Text);
-                    Command.Parameters.AddWithValue("@Class", StudentClassInput.Text);
-                    Command.Parameters.AddWithValue("@AddressName", StudentAddressInput.Text);
-
-                    Conn.Open();
-                    Command.ExecuteNonQuery();
-                }
-
-            }
+            StudentService studentService = new StudentService();
+            studentService.AddStudent(newStudent);
 
             StudentNameINput.Text = string.Empty;
             StudentIDInput.Text = string.Empty;
-            StudentClassInput.Text = string.Empty;   
+            StudentClassInput.Text = string.Empty;
             StudentAddressInput.Text = string.Empty;
-
         }
-
-
     }
-}
+
+    
+ }
+

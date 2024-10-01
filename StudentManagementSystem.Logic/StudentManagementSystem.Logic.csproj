@@ -41,7 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogic\StudentService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StudentManagementSystem.Common\StudentManagementSystem.Common.csproj">
+      <Project>{9560e46f-2268-45bb-b339-ac78cef5a984}</Project>
+      <Name>StudentManagementSystem.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StudentManagementSystem.Data\StudentManagementSystem.Data.csproj">
+      <Project>{8e8aac70-d011-41ac-8c0c-15af55236b6d}</Project>
+      <Name>StudentManagementSystem.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
